@@ -1,210 +1,179 @@
-FlagsGame
+#!/bin/bash
 
-An educational quiz game where players guess the country based on its flag. Developed using Python and Kivy, it supports multiple difficulty levels, hints, and a simple UI.
+cat << 'EOF'
+# 🗺️ FlagsGame
 
-Table of Contents
+An educational quiz game where players guess the country based on its flag. Developed using **Python** and **Kivy**, it supports multiple difficulty levels, hints, and a simple, cross-platform UI.
 
-Overview
+---
 
-Features
+## 🧭 Table of Contents
 
-Technologies
+* [🌟 Overview](#-overview)
+* [✨ Features](#-features)
+* [💻 Technologies](#-technologies)
+* [⬇️ Installation](#-installation)
+* [🕹️ How to Play](#-how-to-play)
+* [🏗️ Code Structure](#-code-structure)
+* [⚙️ Customization and Configuration](#-customization-and-configuration)
+* [📦 Packaging for Mobile or Desktop](#-packaging-for-mobile-or-desktop)
+* [⚖️ License](#-license)
+* [🤝 Contributing](#-contributing)
 
-Installation
+---
 
-How to Play
+## 🌟 Overview
 
-Code Structure
+**FlagsGame** is an interactive quiz game where the player sees a country flag and must choose the correct answer from multiple options. It includes three difficulty levels, scoring, hints, and a final results screen.
 
-Customization and Configuration
+### Project Goals:
 
-Packaging for Mobile or Desktop
+* Make geography learning fun and dynamic.
+* Be lightweight and compatible with both **desktop and mobile** devices (using Kivy).
+* Be easily customizable (new flags, languages, question counts, etc.).
 
-License
+## ✨ Features
 
-Contributing
+### 🎯 Difficulty Selection
 
-Overview
+The game offers three sets of countries for varying challenge levels:
 
-FlagsGame is an interactive quiz game where the player sees a country flag and must choose the correct answer from multiple options. It includes three difficulty levels, scoring, hints, and a final results screen.
+* **Easy:** A set of more commonly known countries.
+* **Medium:** Moderately popular countries.
+* **Hard:** Less commonly known countries.
 
-This project aims to:
+### 🎮 Gameplay
 
-Make geography learning fun and dynamic.
+* A flag is shown, and four country options are presented.
+* Players must choose the correct country that matches the flag.
 
-Be lightweight and compatible with both desktop and mobile devices (using Kivy).
+### 💡 Hint System
 
-Be easily customizable (new flags, languages, question counts, etc.).
+* A hint button shows a piece of information (capital, language, population, or continent) about the country.
+* Hints can be used only **once per game**.
 
-Features
+### 🏆 Scoring and Final Screen
 
-Difficulty Selection:
+* **+1 point** for each correct answer.
+* The final screen displays how many questions the player got right out of the total questions answered.
 
-Easy: Set of more commonly known countries.
+### 🖥️ User Interface (UI)
 
-Medium: Moderately popular countries.
+* Developed using **Kivy**, a Python framework for building cross-platform applications.
 
-Hard: Less commonly known countries.
+## 💻 Technologies
 
-Gameplay:
+The game is primarily built around the Python ecosystem:
 
-A flag is shown, and four country options are presented.
+* **Python 3.x**
+* **Kivy** (for UI and cross-platform)
+* Standard Python libraries (`random`, `clock`, `animation`, etc.).
+* Modular design using screen management (`ScreenManager`) for easier navigation.
 
-Players must choose the correct country that matches the flag.
+## ⬇️ Installation
 
-Hint:
+### Prerequisites
 
-A hint button shows a piece of information (capital, language, population, or continent) about the country.
+Ensure you have the following installed on your system:
 
-Hints can only be used once per game.
+* **Python 3.x**
+* **Kivy:** Install via pip: `pip install kivy`
+* Any additional dependencies specified in a `requirements.txt` file.
 
-Scoring:
+### Steps
 
-+1 point for each correct answer.
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/dhiogoFrutuoso/FlagsGame.git](https://github.com/dhiogoFrutuoso/FlagsGame.git)
+    cd FlagsGame
+    ```
 
-Final Screen:
+2.  **Install dependencies** (if a `requirements.txt` file exists):
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Displays how many questions the player got right out of the total questions answered.
+3.  **Run the game:**
+    ```bash
+    python main.py
+    ```
+    (Or the main entry file that initializes the Kivy App).
 
-UI:
+## 🕹️ How to Play
 
-Developed using Kivy, a Python framework for building cross-platform applications.
+1.  On the **Start Screen**, click "**Play**" to begin the game.
+2.  Choose a difficulty level (**Easy**, **Medium**, or **Hard**).
+3.  In each round:
+    * A flag is displayed.
+    * Four buttons with country names appear.
+    * Select the country that matches the flag.
+4.  After answering a question, the next round starts automatically after **0.7 seconds**.
+5.  Use the **Hint** button (lightbulb icon) to get a hint about the country.
+6.  Once the maximum number of questions is reached, the **Final Screen** appears showing your score.
 
-Technologies
+## 🏗️ Code Structure
 
-Python 3.x
+The project is divided into modules and classes to manage different aspects of the game:
 
-Kivy (for UI)
+* `main.py` (or equivalent): Main entry point for the app.
+* `COUNTRIES_FLAGS`: Dictionary mapping country names to their data (image, capital, continent, language, population).
+* `DIFFICULTY_LEVELS`: Defines which countries belong to which difficulty level.
 
-Standard Python libraries: random, clock, animation, etc.
+### Screen Classes
 
-Modular design using screen management (ScreenManager) for easier navigation between game stages.
+* `StartScreen`: Displays the game’s start screen.
+* `DifficultyScreen`: Allows the user to select a difficulty.
+* `GameScreen`: The main game screen where flags and options are shown.
+* `FinalScreen`: Shows the final score after the game ends.
 
-Installation
-Prerequisites
+### Key Functions
 
-Python 3.x installed.
+* `start_game()`: Initializes the game state.
+* `new_round()`: Configures the next round.
+* `select_answer()`: Handles the selection of an answer.
+* `show_clue()`: Displays a clue for the current country.
 
-Kivy installed: pip install kivy.
+## ⚙️ Customization and Configuration
 
-Any additional dependencies specified in a requirements.txt file.
+The game is designed to be easily modifiable:
 
-Steps
+| Configuration | How to Modify |
+| :--- | :--- |
+| **Max Number of Questions** | Adjust the `MAX_QUESTIONS` variable. |
+| **Country Selection** | Modify the `DIFFICULTY_LEVELS` dictionary. |
+| **Add/Remove Countries** | Edit the `COUNTRIES_FLAGS` dictionary and associated data. |
+| **Graphics** | Replace assets (icons, button designs, flag images) in the resources directory. |
+| **Translations** | Adjust text elements (e.g., "Play", "You got X out of Y") within the screen classes. |
 
-Clone the repository:
+## 📦 Packaging for Mobile or Desktop
 
-git clone https://github.com/dhiogoFrutuoso/FlagsGame.git
-cd FlagsGame
+### Desktop (Windows/Linux/macOS)
 
+Use **PyInstaller** to package the game into an executable.
 
-Install dependencies (if there's a requirements.txt file):
-
-pip install -r requirements.txt
-
-
-Run the game:
-
-python main.py
-
-
-(or the main entry file that initializes the Kivy App)
-
-How to Play
-
-On the Start Screen, click "Play" to start the game.
-
-Choose a difficulty level (Easy, Medium, or Hard).
-
-In each round:
-
-A flag is displayed.
-
-Four buttons with country names appear.
-
-Select the country that matches the flag.
-
-After answering a question, you have 0.7 seconds before the next round starts automatically.
-
-Use the Hint button (lightbulb icon) to get a hint about the country (capital, language, continent, or population).
-
-Once the maximum number of questions is reached, the Final Screen appears showing the score.
-
-Code Structure
-
-main.py (or equivalent): Main entry point for the app.
-
-COUNTRIES_FLAGS: Dictionary mapping country names to data (image, capital, continent, language, population).
-
-DIFFICULTY_LEVELS: Defines which countries belong to which difficulty level.
-
-Screen Classes:
-
-StartScreen: Displays the game’s start screen.
-
-DifficultyScreen: Allows the user to select a difficulty.
-
-GameScreen: The main game screen where flags and options are shown.
-
-FinalScreen: Shows the final score after the game ends.
-
-Key functions:
-
-start_game(): Initializes the game state.
-
-new_round(): Configures the next round.
-
-select_answer(): Handles the selection of an answer.
-
-show_clue(): Displays a clue for the current country.
-
-Customization and Configuration
-
-Max Number of Questions: Set using MAX_QUESTIONS.
-
-Country Selection per Difficulty: Modify the DIFFICULTY_LEVELS dictionary to change which countries appear at each level.
-
-Add/Remove Countries: Modify the COUNTRIES_FLAGS dictionary to add or remove countries and their associated data.
-
-Graphics: Replace assets like the hint icon, button designs, or flag images.
-
-Translations: Translate the game to other languages by adjusting text elements like "Play", "You got X out of Y", etc.
-
-Layout Adjustments: Modify the layout for different screen sizes or devices.
-
-Packaging for Mobile: Instructions below for packaging for Android, iOS, etc.
-
-Packaging for Mobile or Desktop
-Desktop (Windows/Linux/macOS)
-
-Use PyInstaller to package the game into an executable. For example:
-
+```bash
 pyinstaller --onefile --add-data "bandeiras;./bandeiras" main.py
-
-
-Ensure paths are relative and use sys._MEIPASS to access resources when packaged.
+Note: Ensure paths are relative and use sys._MEIPASS to access resources when packaged.
 
 Android
-
-Use Buildozer (or toolchain for Kivy) to package the game for Android. Example:
+Use Buildozer (or the Kivy toolchain) to package the game for Android.
 
 Configure the buildozer.spec file.
 
-Package with buildozer android debug (adjust for your system).
+Package with: buildozer android debug (adjust for your system).
 
-License
+⚖️ License
+This project is licensed under the MIT License.
 
-This project is licensed under the MIT License
-.
 Feel free to modify, distribute, or contribute!
 
-Contributing
-
+🤝 Contributing
 Contributions are welcome! Please follow these steps to contribute:
 
 Fork the repository.
 
-Create a new branch (git checkout -b feature/my-new-feature).
+Create a new branch: git checkout -b feature/my-new-feature.
 
 Make changes and commit with clear messages.
 
-Open a pull request for review.
+Open a Pull Request for review.
